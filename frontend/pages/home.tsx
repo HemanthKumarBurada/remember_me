@@ -12,6 +12,7 @@ const Home = () => {
     try {
       const res = await fetch("http://localhost:4000/auth/logout", {
         method: "POST",
+        credentials: 'include', 
       });
 
       if (res.ok) {

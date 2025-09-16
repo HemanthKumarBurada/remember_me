@@ -1,36 +1,23 @@
 .pageGifBg {
   min-height: 100vh;
-  min-width: 100vw;
-  position: relative;
-  overflow: hidden;
-}
-
-.pageGifBg::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
   background: rgb(211, 210, 210);
-  width: 100vw;
-  height: 100vh;
-}
-
-.centeredContent {
-  position: relative;
-  z-index: 1;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
+}
+
+.centeredContent {
+  width: 100%;
 }
 
 .loginCard {
   background: white;
   border-radius: 18px;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
-  border: 1.5px solid #fff;
-  max-width: 500px;
+  max-width: 470px;
   width: 100%;
+  margin: 0 auto;
   padding: 2rem;
 }
 
@@ -40,7 +27,6 @@
   font-weight: 600;
   color: #000;
   margin-bottom: 1.5rem;
-  letter-spacing: 0.01em;
   text-align: center;
 }
 
@@ -53,9 +39,7 @@
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  position: relative;
-  align-items: center; /* Center contents horizontally */
+  gap: 0.5rem;
 }
 
 .inputLabel {
@@ -63,13 +47,11 @@
   font-family: 'Inter', Arial, sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
-  align-self: flex-start;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .input {
   width: 100%;
-  max-width: 420px;
   height: 3.2rem;
   border-radius: 1rem;
   border: 1.5px solid #111;
@@ -79,164 +61,129 @@
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 600;
   background: #fff;
-  transition: border 0.2s;
+  box-sizing: border-box;
 }
 
 .input::placeholder {
   color: #bcbcbc;
-  font-weight: 400;
-  opacity: 1;
+  font-weight: 500;
 }
 
 .passwordWrapper {
   position: relative;
   width: 100%;
-  max-width: 450px;
 }
 
 .toggleEye {
   position: absolute;
-  top: 71%;
-  right: 2rem;
+  top: 50%;
+  right: 1rem;
   transform: translateY(-50%);
-  width: 2.5rem;
-  height: 2.2rem;
-  display: flex;
-  align-items: center;
   cursor: pointer;
-  user-select: none;
   z-index: 2;
-  color: #4877f5;
-}
-
-.toggleEye svg {
-  width: 2.3rem;
-  height: 2.1rem;
-}
-
-.divider {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  margin: 0.1rem 0 0.2rem;
-  font-size: 1rem;
-  font-family: 'Inter', Arial, sans-serif;
-  font-weight: 500;
-  color: #4b4b4b;
 }
-
-.dividerLine {
-  flex: 1;
-  height: 1px;
-  background-color: #bcbcbc;
-  margin: 0 5%;
-}
-
-.googleButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  color: #ffffff;
-  border: 1px solid #dadce0;
-  border-radius: 4px;
-  font-weight: 500;
-  font-size: 1.1rem;
-  padding: 0.7rem 1.5rem;
-  margin-top: 1.5rem;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 2px rgba(60,64,67,.08), 0 1.5px 6px rgba(60,64,67,.08);
-  outline: none;
-  min-width: 260px;
-}
-
-.googleButton:hover,
-.googleButton:focus {
-  background: #f7f7f7;
-  box-shadow: 0 2px 8px rgba(60,64,67,.12);
-}
-
-.googleIcon {
-  display: inline-block;
-  vertical-align: middle;
-  width: 24px;
-  height: 24px;
-  margin-right: 12px;
-}
-
-.googleButtonText {
-  vertical-align: middle;
-  font-size: 1.1rem;
-  font-family: inherit;
-}
-
 
 .optionsRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.2rem;
-  margin-top: -0.3rem;
-  padding: 0 4%;
+  padding: 0 5px;
 }
 
 .rememberMe {
   display: flex;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 500;
-  color: black;
-  gap: 0.4em;
+  gap: 0.5em;
   cursor: pointer;
-  user-select: none;
 }
 
 .rememberCheckbox {
   accent-color: #040404;
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.3em;
+  height: 1.3em;
   cursor: pointer;
 }
 
 .forgotPasswordLink {
-  color: #000000;
+  color: #000;
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 500;
   font-size: 1rem;
   text-decoration: underline;
-  cursor: pointer;
-}
-
-.forgotPasswordLink:hover,
-.forgotPasswordLink:focus {
-  color: #000000;
-  text-decoration: none;
 }
 
 .button {
   width: 70%;
-  max-width: 300px;
   height: 3.2rem;
-  background: #000000;
+  background: #000;
   border-radius: 1rem;
   border: 1.5px solid #222;
   font-size: 1.25rem;
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 600;
-  color: rgb(255, 255, 255);
+  color: #fff;
   cursor: pointer;
-  transition: background 0.18s;
+  transition: background 0.18s, color 0.18s;
   margin: 0.1rem auto;
   display: block;
 }
 
 .button:hover,
 .button:active {
-  background: #ffffff;
-  color: #000000;
+  background: #fff;
+  color: #000;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #666;
+}
+
+.dividerLine {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ddd;
+}
+
+/* --- CORRECTED GOOGLE BUTTON STYLES --- */
+.googleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem; /* Space between icon and text */
+  width: 70%;
+  height: 3.2rem;
+  background: #fff;
+  color: #333; /* Dark text for readability */
+  border-radius: 1rem;
+  border: 1.5px solid #ccc;
+  font-size: 1.1rem;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.18s, border-color 0.18s;
+  margin: 0.1rem auto;
+  text-decoration: none; /* Remove underline from link */
+}
+
+.googleButton:hover {
+  background: #f7f7f7;
+  border-color: #aaa;
+}
+
+.googleIcon {
+  display: block; /* Ensures proper alignment */
+}
+
+.googleButtonText {
+  display: block;
 }
 
 .signupLink {
@@ -245,35 +192,24 @@
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 600;
   color: #222;
-  margin-top: 0.1rem;
 }
 
 .signupLinkText {
-  color: #000000;
+  color: #000;
   text-decoration: underline;
   cursor: pointer;
 }
 
 .message {
   margin-top: 1rem;
-  color: #333;
   text-align: center;
   font-weight: 600;
 }
 
-/* Optional for mobile: */
-@media (max-width: 500px) {
-  .googleButton {
-    padding: 0.7rem 0.5rem;
-    font-size: 1rem;
-    min-width: 0;
-  }
-  .googleButtonText {
-    font-size: 1rem;
-  }
-  .googleIcon {
-    margin-right: 8px;
-    width: 20px;
-    height: 20px;
-  }
+.message.error {
+    color: red;
+}
+
+.message.success {
+    color: green;
 }

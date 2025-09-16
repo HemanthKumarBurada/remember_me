@@ -1,18 +1,9 @@
+/* --- Paste this entire block to replace your existing CSS file --- */
 .pageGifBg {
   min-height: 100vh;
-  min-width: 100vw;
   position: relative;
   overflow: hidden;
-}
-
-.pageGifBg::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
   background: rgb(128, 127, 127);
-  width: 100vw;
-  height: 100vh;
 }
 
 .centeredContent {
@@ -22,6 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem 0;
 }
 
 .loginCard {
@@ -29,9 +21,8 @@
   border-radius: 18px;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
   border: 1.5px solid #fff;
-  max-width: none;
   width: 470px;
-  height: 800px;
+  height: auto;
   padding: 2rem;
 }
 
@@ -39,9 +30,7 @@
   font-family: 'Inter', Arial, sans-serif;
   font-size: 2rem;
   font-weight: 600;
-  color: #000;
   margin-bottom: 1.3rem;
-  letter-spacing: 0.01em;
   text-align: center;
 }
 
@@ -54,8 +43,7 @@
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  position: relative; /* For toggle eye positioning */
+  gap: 0.5rem;
 }
 
 .inputLabel {
@@ -63,7 +51,6 @@
   font-family: 'Inter', Arial, sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
-  margin-bottom: 0.3rem;
   margin-left: 20px;
 }
 
@@ -77,144 +64,147 @@
   padding: 0 1rem;
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 600;
-  transition: border 0.2s;
-  background: #fff;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   display: block;
+  box-sizing: border-box; /* Important for consistent sizing */
 }
 
-.input::placeholder {
-  color: #bcbcbc;
-  font-weight: 500;
-  opacity: 1;
+/* --- THE FIX FOR INPUT SIZES --- */
+.passwordWrapper {
+  position: relative;
+  width: 90%; /* Match the width of other inputs */
+  margin: 0 auto; /* Center it */
 }
+
+.passwordWrapper .input {
+  width: 100%; /* Make the input fill its wrapper */
+}
+/* --- END OF FIX --- */
 
 .toggleEye {
   position: absolute;
-  top: 71%;
-  right: 1.5rem;
+  top: 50%;
+  right: 1rem;
   transform: translateY(-50%);
-  width: 2.5rem;
-  height: 2.2rem;
+  cursor: pointer;
+  z-index: 2;
   display: flex;
   align-items: center;
-  cursor: pointer;
-  user-select: none;
-  z-index: 2;
-  color: #4877f5;
 }
 
-.toggleEye svg {
-  width: 2.3rem;
-  height: 2.1rem;
-}
-
-.button {
+.button, .googleButton {
   width: 70%;
   height: 3.2rem;
-  background: #000000;
   border-radius: 1rem;
   border: 1.5px solid #222;
   font-size: 1.1rem;
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 600;
-  color: rgb(255, 255, 255);
   cursor: pointer;
-  transition: background 0.18s;
-  margin: 0.05rem auto 0.1rem auto;
-  display: block;
-  text-align: center;
+  transition: background 0.18s, color 0.18s;
+  margin: 0.1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none; /* For the 'a' tag google button */
 }
 
-.button:hover,
-.button:active {
-   background: #ffffff;
-   color: #000000;
+.button {
+  background: #000;
+  color: #fff;
+}
+
+.button:hover, .button:active {
+  background: #fff;
+  color: #000;
 }
 
 .googleButton {
-  margin-top: 0.05rem;
-  margin-bottom: 0.1rem;
-  display: flex;
-  font-size: 1.1rem;
-  align-items: center;
-  justify-content: center;
-  background: rgb(0, 0, 0);
-  color: white;
-  border: 1.5px solid black;
-  font-weight: 600;
-  border-radius: 1rem;
-  width: 70%;
-  cursor: pointer;
-  transition: background 0.15s;
+  background: #fff;
+  color: #000;
+  gap: 0.7em;
 }
 
 .googleButton:hover {
-background: #ffffff;
-  color: #000000;
-}
-
-.googleIconWrapper {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 0.7em;
-  margin-top: 0.1em;
-}
-
-.googleButtonText {
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  background: #f1f1f1;
 }
 
 .divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #202020;
-  font-size: 1.15rem;
-  font-weight: 600;
-  font-family: 'Inter', Arial, sans-serif;
   gap: 1rem;
   margin: 0.3rem 0;
+  color: #202020;
 }
 
 .dividerLine {
-  flex-shrink: 0;
-  width: 100px;
+  flex-grow: 1;
   height: 1.5px;
-  background: #222;
-  border-radius: 2px;
-  opacity: 0.35;
+  background: #ddd;
 }
+
+.passwordStrengthContainer {
+  width: 90%;
+  margin: -5px auto 15px auto;
+}
+
+.strengthBarWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.strengthBar {
+  flex-grow: 1;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.strengthIndicator {
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strengthIndicator.strength-weak { width: 33%; background-color: #ff4d4d; }
+.strengthIndicator.strength-medium { width: 66%; background-color: #ff9d4d; }
+.strengthIndicator.strength-strong { width: 100%; background-color: #4dff4d; }
+
+.strengthText { font-size: 0.8rem; font-weight: bold; }
+.strengthText-weak { color: #ff4d4d; }
+.strengthText-medium { color: #ff9d4d; }
+.strengthText-strong { color: #4dff4d; }
+
+.validationList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.validationList li { margin-bottom: 4px; }
+.validationList li.valid { color: #4dff4d; text-decoration: line-through; }
+
+.errorMessage, .successMessage {
+  text-align: center;
+  margin-top: 10px;
+}
+.errorMessage { color: red; }
+.successMessage { color: green; }
 
 .signupLink {
   text-align: center;
-  font-size: 1.08rem;
-  font-family: 'Inter', Arial, sans-serif;
-  font-weight: 600;
-  color: #222;
-  margin-top: 0.1rem;
+  font-size: 1rem;
+  font-weight: 500;
 }
-
 
 .link {
   color: #4877f5;
   text-decoration: underline;
-  cursor: pointer;
   font-weight: 600;
-  text-align: center;
-  font-size: 1.08rem;
-  font-family: 'Inter', Arial, sans-serif;
-  font-weight: 600;
-  margin-top: 0.1rem;
-  
-}
-
-.link:hover,
-.link:focus {
-  color: #3056d3;
-  text-decoration: none;
-  outline: none;
-  transition: color 0.2s ease-in-out;
 }

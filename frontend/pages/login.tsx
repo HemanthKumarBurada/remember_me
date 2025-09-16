@@ -6,6 +6,7 @@ import styles from "../styles/login.module.css";
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false); // <-- New state for checkbox
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -20,16 +21,15 @@ export default function LoginPage() {
       const response = await fetch('http://localhost:4000/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-        // This line is crucial for sending and receiving cookies
-        credentials: 'include', 
+        // Add rememberMe to the request body
+        body: JSON.stringify({ email, password, rememberMe }),
+        credentials: 'include',
       });
 
       const data = await response.json();
 
       if (response.ok) {
         setMessage(data.message || 'Login successful');
-        // Redirect to home page on success
         router.push('/home');
       } else {
         throw new Error(data.message || 'Login failed');
@@ -40,7 +40,7 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
-  
+
   const EyeIcon = () => (
     <svg height="25" width="30" viewBox="0 0 24 24" fill="none" stroke="#4877f5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <ellipse cx="12" cy="12" rx="8" ry="5" />
@@ -76,35 +76,31 @@ export default function LoginPage() {
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="password" className={styles.inputLabel}>Password</label>
-              <input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                className={styles.input}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <span
-                className={styles.toggleEye}
-                role="button"
-                tabIndex={0}
-                onClick={() => setShowPassword(!showPassword)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setShowPassword(!showPassword);
-                  }
-                }}
-                aria-label={showPassword ? "Hide password" : "Show password"}
-              >
-                {showPassword ? <EyeIcon /> : <EyeOffIcon />}
-              </span>
+               <div className={styles.passwordWrapper}>
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  className={styles.input}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <span className={styles.toggleEye} role="button" onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <EyeIcon /> : <EyeOffIcon />}
+                </span>
+              </div>
             </div>
 
             <div className={styles.optionsRow}>
               <label className={styles.rememberMe}>
-                <input type="checkbox" className={styles.rememberCheckbox} /> Remember me
+                <input
+                  type="checkbox"
+                  className={styles.rememberCheckbox}
+                  checked={rememberMe} // <-- Control the checkbox state
+                  onChange={(e) => setRememberMe(e.target.checked)} // <-- Update state on change
+                />
+                Remember me
               </label>
               <Link href="/forgot-password" className={styles.forgotPasswordLink}>
                 Forgot Password?
@@ -127,7 +123,7 @@ export default function LoginPage() {
               <span className={styles.dividerLine}></span>
             </div>
 
-            <a href="http://localhost:4000/auth/google" className={`${styles.button} ${styles.googleButton}`}>
+            <a href="http://localhost:4000/auth/google" className={styles.googleButton}>
               <svg className={styles.googleIcon} width="20" height="20" viewBox="0 0 24 24" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                   <g>
                       <path d="M21.35 11.1h-9.17v2.82h5.63c-.24 1.41-1.28 2.61-2.75 3.12l.02.13 3.28 2.54.23.02c2.08-1.92 3.28-4.76 3.28-8.01 0-.56-.06-1.09-.15-1.62z" fill="#4285F4"></path>
@@ -136,7 +132,7 @@ export default function LoginPage() {
                       <path d="M12.18 6.89c2.14 0 3.58.92 4.41 1.7l3.23-3.15C18.55 3.84 15.89 2.5 12.18 2.5c-4.07 0-7.57 2.02-9.32 5.04l3.82 2.51c.75-2.28 2.88-4.16 5.5-4.16z" fill="#EA4335"></path>
                   </g>
               </svg>
-              <span>Sign in with Google</span>
+              <span className={styles.googleButtonText}>Continue with Google</span>
             </a>
 
             <p className={styles.signupLink}>
