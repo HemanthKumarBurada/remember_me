@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import HeroSection2 from "./HeroSection2";
 import HeroSection3 from "./HeroSection3";
@@ -16,21 +16,34 @@ export default function HeroContainer() {
     <HeroSection3 key={2} />,
   ];
 
-  const prevSlide = () =>
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   const nextSlide = () =>
     setCurrentSlide((prev) => (prev + 1) % slides.length);
+
+  // Auto-scroll logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000); // auto-scroll every 5s
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className={styles.heroContainer}>
       {slides[currentSlide]}
 
-      <div className={styles.sliderNav}>
-        <button onClick={prevSlide}>◀</button>
-        <span>
-          {currentSlide + 1} / {slides.length}
-        </span>
-        <button onClick={nextSlide}>▶</button>
+      <div className={styles.dotsNav}>
+        {slides.map((_, index) => (
+          <span
+            key={index}
+            className={`${styles.dot} ${
+              currentSlide === index ? styles.activeDot : ""
+            }`}
+            onClick={() => setCurrentSlide(index)}
+          >
+            {currentSlide === index ? "●" : "○"}
+          </span>
+        ))}
       </div>
     </div>
   );
